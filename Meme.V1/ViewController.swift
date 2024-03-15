@@ -17,9 +17,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imagePickerController.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
+        // Doesn't work on Apple Silicon Macs. This return TRUE even on simulator.
         self.cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
     
