@@ -39,22 +39,42 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WEU-mg-fEy">
                                 <rect key="frame" x="0.0" y="59" width="393" height="723"/>
                             </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RDl-Qb-HLY">
+                                <rect key="frame" x="16" y="193.33333333333334" width="361" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pGR-mK-C9q">
+                                <rect key="frame" x="16" y="613.66666666666663" width="361" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WEU-mg-fEy" secondAttribute="trailing" id="0GG-fA-aBT"/>
+                            <constraint firstItem="RDl-Qb-HLY" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="2F2-eH-Lmx"/>
+                            <constraint firstItem="RDl-Qb-HLY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Ljm-ev-SGF"/>
                             <constraint firstItem="Jyy-LD-juO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="OtJ-mV-ipC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RDl-Qb-HLY" secondAttribute="trailing" constant="16" id="TOC-f9-W7l"/>
                             <constraint firstItem="Jyy-LD-juO" firstAttribute="top" secondItem="WEU-mg-fEy" secondAttribute="bottom" id="TtF-fs-Sd3"/>
+                            <constraint firstItem="RDl-Qb-HLY" firstAttribute="centerY" secondItem="WEU-mg-fEy" secondAttribute="centerY" multiplier="0.5" id="UJr-Hb-ayY"/>
                             <constraint firstItem="Jyy-LD-juO" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="hDQ-Jd-rAx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pGR-mK-C9q" secondAttribute="trailing" constant="16" id="jRd-Bs-UVv"/>
                             <constraint firstItem="Jyy-LD-juO" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="13" id="jnl-iU-Y4o"/>
                             <constraint firstItem="WEU-mg-fEy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mEp-9D-cPE"/>
+                            <constraint firstItem="pGR-mK-C9q" firstAttribute="centerY" secondItem="WEU-mg-fEy" secondAttribute="centerY" multiplier="1.5" id="uh4-zU-Nzy"/>
                             <constraint firstItem="WEU-mg-fEy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vMs-Ux-2eP"/>
+                            <constraint firstItem="pGR-mK-C9q" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="wZs-EZ-asE"/>
+                            <constraint firstItem="pGR-mK-C9q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="zF6-zX-cip"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomTextField" destination="pGR-mK-C9q" id="otm-Ub-L5b"/>
                         <outlet property="cameraButton" destination="yQO-KW-CVT" id="BP9-TN-4QA"/>
                         <outlet property="imagePickerView" destination="WEU-mg-fEy" id="d9q-OJ-DWa"/>
+                        <outlet property="topTextField" destination="RDl-Qb-HLY" id="yVD-h7-7vL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
