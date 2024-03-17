@@ -22,7 +22,6 @@ class MemeCreatorController: UIViewController, UIImagePickerControllerDelegate, 
     
     let defaultTopTextField: String = "TOP"
     let defaultBottomTextField: String = "BOTTOM"
-    
     let imagePickerController = UIImagePickerController()
     var shouldUpdateFrame: Bool = false
     
@@ -116,9 +115,15 @@ class MemeCreatorController: UIViewController, UIImagePickerControllerDelegate, 
                 self.view.drawHierarchy(in: bounds, afterScreenUpdates: true)
                 self.changeToolbarsVisibility(isHidden: false)
             })
-            // TODO
-            let meme = Meme(topText: self.topTextField.text, bottomText: self.bottomTextField.text, originalImage: originalImage, memedImage: memedImage)
             
+            // Open activity view
+            let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+            activityViewController.completionWithItemsHandler = { activityType, completed, returnedItems, activityError in
+                if (completed == true) {
+                    self.saveMeme(originalImage: originalImage, memedImage: memedImage)
+                }
+            }
+            self.present(activityViewController, animated: true)
         }
     }
     
@@ -198,6 +203,12 @@ class MemeCreatorController: UIViewController, UIImagePickerControllerDelegate, 
     /// Dismiss Keyboard
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
+    }
+    
+    // MARK: SAVE MEME
+    /// Has been called after save meme on Activity View
+    func saveMeme(originalImage: UIImage, memedImage: UIImage) {
+        let newMeme = Meme(topText: self.topTextField.text, bottomText: self.bottomTextField.text, originalImage: originalImage, memedImage: memedImage)
     }
 }
 
