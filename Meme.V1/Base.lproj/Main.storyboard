@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jyy-LD-juO" userLabel="Bottom Toolbar">
-                                <rect key="frame" x="0.0" y="787" width="393" height="44"/>
+                                <rect key="frame" x="0.0" y="782" width="393" height="49"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="0iS-Ga-bvW"/>
                                     <barButtonItem title="Item" id="yQO-KW-CVT">
@@ -28,7 +28,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="KYb-kB-1ha"/>
-                                    <barButtonItem title="Album" id="kZL-BK-jfu">
+                                    <barButtonItem title="Album" id="kZL-BK-jfu" userLabel="Album Button">
                                         <connections>
                                             <action selector="pickAnImage:" destination="BYZ-38-t0r" id="icn-kF-dV4"/>
                                         </connections>
@@ -37,24 +37,32 @@
                                 </items>
                             </toolbar>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WEU-mg-fEy">
-                                <rect key="frame" x="0.0" y="103" width="393" height="684"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="679"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RDl-Qb-HLY">
-                                <rect key="frame" x="16" y="205.66666666666666" width="361" height="33.999999999999972"/>
+                                <rect key="frame" x="16" y="204.33333333333334" width="361" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pGR-mK-C9q">
-                                <rect key="frame" x="16" y="650.66666666666663" width="361" height="34"/>
+                                <rect key="frame" x="16" y="646.66666666666663" width="361" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AgV-vC-BQ2" userLabel="Top Tool Bar">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AgV-vC-BQ2" userLabel="Top Toolbar">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="103"/>
                                 <items>
-                                    <barButtonItem title="Item" image="square.and.arrow.up" catalog="system" id="y3A-2T-7Yr"/>
+                                    <barButtonItem title="Item" image="square.and.arrow.up" catalog="system" id="y3A-2T-7Yr" userLabel="Share Button">
+                                        <connections>
+                                            <action selector="shareMeme:" destination="BYZ-38-t0r" id="Hjq-Th-Nt0"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Pjl-Ge-98j"/>
-                                    <barButtonItem title="Cancel" id="whB-pX-Tvs"/>
+                                    <barButtonItem title="Cancel" id="whB-pX-Tvs" userLabel="Cancel Button">
+                                        <connections>
+                                            <action selector="cancelButton:" destination="BYZ-38-t0r" id="pqK-Hy-s1N"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -84,9 +92,12 @@
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="pGR-mK-C9q" id="otm-Ub-L5b"/>
+                        <outlet property="bottomToolbar" destination="Jyy-LD-juO" id="mAU-3d-J93"/>
                         <outlet property="cameraButton" destination="yQO-KW-CVT" id="BP9-TN-4QA"/>
-                        <outlet property="imagePickerView" destination="WEU-mg-fEy" id="d9q-OJ-DWa"/>
+                        <outlet property="imageViewFrame" destination="WEU-mg-fEy" id="d9q-OJ-DWa"/>
+                        <outlet property="shareButton" destination="y3A-2T-7Yr" id="iYi-4F-ZVe"/>
                         <outlet property="topTextField" destination="RDl-Qb-HLY" id="yVD-h7-7vL"/>
+                        <outlet property="topToolbar" destination="AgV-vC-BQ2" id="kSW-n2-aTY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

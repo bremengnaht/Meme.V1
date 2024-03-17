@@ -9,8 +9,13 @@ import UIKit
 
 class MemeCreatorController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     // MARK: Property
-    @IBOutlet var imagePickerView: UIImageView!
+    @IBOutlet var imageViewFrame: UIImageView!
+    
     @IBOutlet var cameraButton: UIBarButtonItem!
+    @IBOutlet var shareButton: UIBarButtonItem!
+    
+    @IBOutlet var topToolbar: UIToolbar!
+    @IBOutlet var bottomToolbar: UIToolbar!
     
     @IBOutlet var topTextField: UITextField!
     @IBOutlet var bottomTextField: UITextField!
@@ -32,6 +37,7 @@ class MemeCreatorController: UIViewController, UIImagePickerControllerDelegate, 
         self.hideKeyboardWhenTapOnScreen()
         self.configTextField(textField: self.topTextField, defaultText: self.defaultTopTextField)
         self.configTextField(textField: self.bottomTextField, defaultText: self.defaultBottomTextField)
+        self.verifyShareButtonState()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,12 +54,14 @@ class MemeCreatorController: UIViewController, UIImagePickerControllerDelegate, 
     /// Select or capture image successfully
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.dismiss(animated: true)
-        self.imagePickerView.image = info[.originalImage] as? UIImage
+        self.imageViewFrame.image = info[.originalImage] as? UIImage
+        self.verifyShareButtonState()
     }
     
     /// Cancel select or capture image
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true)
+        self.verifyShareButtonState()
     }
     
     /// Prevent push up screen when edit top textField
@@ -97,6 +105,30 @@ class MemeCreatorController: UIViewController, UIImagePickerControllerDelegate, 
         self.present(self.imagePickerController, animated: true)
     }
     
+    /// Click share botton on top toolbar
+    @IBAction func shareMeme(_ sender: Any) {
+        if let originalImage = self.imageViewFrame.image {
+            // Generate memed image
+            let bounds = self.view.bounds
+            let renderer = UIGraphicsImageRenderer(size: bounds.size)
+            let memedImage: UIImage = renderer.image(actions: { _ in
+                self.changeToolbarsVisibility(isHidden: true)
+                self.view.drawHierarchy(in: bounds, afterScreenUpdates: true)
+                self.changeToolbarsVisibility(isHidden: false)
+            })
+            // TODO
+            let meme = Meme(topText: self.topTextField.text, bottomText: self.bottomTextField.text, originalImage: originalImage, memedImage: memedImage)
+            
+        }
+    }
+    
+    /// Reset meme
+    @IBAction func cancelButton(_ sender: Any) {
+        self.imageViewFrame.image = nil
+        self.topTextField.text = self.defaultTopTextField
+        self.bottomTextField.text = self.defaultBottomTextField
+        self.verifyShareButtonState()
+    }
     
     // MARK: LAYOUT DESIGN
     /// Update text field style to match with requirement
@@ -114,6 +146,15 @@ class MemeCreatorController: UIViewController, UIImagePickerControllerDelegate, 
         textField.textAlignment = .center
         textField.text = defaultText
         textField.minimumFontSize = 12
+    }
+    
+    func changeToolbarsVisibility(isHidden: Bool) {
+        self.topToolbar.isHidden = isHidden
+        self.bottomToolbar.isHidden = isHidden
+    }
+    
+    func verifyShareButtonState() {
+        self.shareButton.isEnabled = self.imageViewFrame.image !== nil
     }
     
     // MARK: KEYBOARD'S PROCESS
@@ -160,3 +201,9 @@ class MemeCreatorController: UIViewController, UIImagePickerControllerDelegate, 
     }
 }
 
+struct Meme {
+    var topText: String?
+    var bottomText: String?
+    var originalImage: UIImage
+    var memedImage: UIImage
+}
